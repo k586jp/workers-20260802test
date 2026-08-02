@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "workers-20260802test",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-10",
+  "assets": {
+    "directory": "./assets/",
+    "binding": "ASSETS",
+    "html_handling": "none"
+  },
+  "services": [
+    {
+      "binding": "K586_ARTICLE_ID",
+      "service": "workers-db",
+      "entrypoint": "K586ArticleId"
+    }
+  ]
+}
