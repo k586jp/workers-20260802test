@@ -38,7 +38,7 @@ async function articleHtml(context: c) {
     const html = htmlText(context, '/id.js');
     const id = context.req.param('id');
     const json: Article[] = context.env.K586_ARTICLE_ID.getArticle(id);
-    return context.json(json);
+    return context.text(json.toString());
 }
 
 // ================================================================
