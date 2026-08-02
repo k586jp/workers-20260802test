@@ -1,6 +1,6 @@
 import { Hono, Context as c } from 'hono';
 import type { Service } from '@cloudflare/workers-types'
-import type { K586ArticleId } from '../../workers-db/src/index';
+import type { K586ArticleId, Article } from '../../workers-db/src/index';
 
 type Bindings = {
     K586_ARTICLE_ID: Service<K586ArticleId>
@@ -37,7 +37,8 @@ async function articleListHtml(context: c) {
 async function articleHtml(context: c) {
     const html = htmlText(context, '/id.js');
     const id = context.req.param('id');
-    return context.json(context.env.K586_ARTICLE_ID.getArticle(id));
+    const json: Article[] = context.env.K586_ARTICLE_ID.getArticle(id);
+    return context.json(json);
 }
 
 // ================================================================
