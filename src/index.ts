@@ -36,7 +36,7 @@ async function articleListHtml(context: c) {
 
 async function articleHtml(context: c) {
     const html = htmlText(context, '/id.js');
-    return context.json(context.env.K586_ARTICLE_ID.getArticle(context.req.json<{ id: string }>()));
+    return context.text(await context.req.text());
 }
 
 // ================================================================
