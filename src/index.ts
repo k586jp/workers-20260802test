@@ -3,7 +3,7 @@ import type { Service } from '@cloudflare/workers-types'
 import type { K586ArticleId } from '../../workers-db/src/index';
 
 type Bindings = {
-    K586_ARTICLE_ID: Service<K586ArticleId>;
+    K586_ARTICLE_ID: Service<K586ArticleId>
 };
 
 function main() {
