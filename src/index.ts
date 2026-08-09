@@ -1,4 +1,5 @@
 import { Hono, Context as c } from 'hono';
+import { PageLayout } from './html';
 import type { Service } from '@cloudflare/workers-types'
 import type { K586ArticleId, Article } from '../../workers-db/src/index';
 
@@ -34,11 +35,10 @@ async function articleListHtml(context: c) {
     return context.html(html);
 }
 
-async function articleHtml(context: c) {
-    const html = htmlText(context, '/id.js');
+async function articleHtml(context: c) {;
     const id = context.req.param('id');
     const json: Article[] = await context.env.K586_ARTICLE_ID.getArticle(id);
-    return context.json(json[0]);
+    return context.html(PageLayout({ title: json[0].title, bodyHtml: json[0].content_html }));
 }
 
 // ================================================================
