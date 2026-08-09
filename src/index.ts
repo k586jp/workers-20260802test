@@ -27,7 +27,7 @@ export default main();
 
 async function indexHtml(context: c) {
     const json: Article[] = await context.env.K586_ARTICLES.getArticlesTitle();
-    return context.json(PageLayout(json));
+    return context.html(PageLayout(json));
 }
 
 async function articleListHtml(context: c) {
