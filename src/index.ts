@@ -1,10 +1,10 @@
 import { Hono, Context as c } from 'hono';
 import { PageLayout } from './html';
 import type { Service } from '@cloudflare/workers-types'
-import type { K586ArticleId, Article } from '../../workers-db/src/index';
+import type { K586Articles, Article } from '../../workers-db/src/index';
 
 type Bindings = {
-    K586_ARTICLE_ID: Service<K586ArticleId>
+    K586_ARTICLES: Service<K586Articles>
 };
 
 function main() {
@@ -26,8 +26,8 @@ export default main();
 // ################################################################
 
 async function indexHtml(context: c) {
-    const html = htmlText(context, '/index.js');
-    return context.html(html);
+    const json: Article[] = await context.env.K586_ARTICLES.getArticlesTitle();
+    return context.json(PageLayout(json));
 }
 
 async function articleListHtml(context: c) {
@@ -37,13 +37,13 @@ async function articleListHtml(context: c) {
     } else {
         page = 0;
     }
-    const json: Article[] = await context.env.K586_ARTICLE_ID.getArticle(page);
+    const json: Article[] = await context.env.K586_ARTICLES.getArticles(page);
     return context.html(PageLayout(json));
 }
 
 async function articleHtml(context: c) {;
     const id = context.req.param('id');
-    const json: Article[] = await context.env.K586_ARTICLE_ID.getArticle(id);
+    const json: Article[] = await context.env.K586_ARTICLES.getArticles(id);
     return context.html(PageLayout(json));
 }
 

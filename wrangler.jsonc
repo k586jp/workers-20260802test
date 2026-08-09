@@ -10,9 +10,9 @@
   },
   "services": [
     {
-      "binding": "K586_ARTICLE_ID",
+      "binding": "K586_ARTICLES",
       "service": "workers-db",
-      "entrypoint": "K586ArticleId"
+      "entrypoint": "K586Articles"
     }
   ]
 }

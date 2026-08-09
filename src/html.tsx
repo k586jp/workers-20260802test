@@ -7,6 +7,12 @@ export function PageLayout(props: Article[]) {
     let articlesHtml = '';
     if (count === 0) {
         articlesHtml = '<div><h3>[!] 記事がありません。</h3></div>';
+    } else if (!props[0].content_md) {
+        articlesHtml = '<div><h6>1970-01-01 00:00:00</h6><h1><a href="/article/">新着記事一覧</a></h1><ul>';
+        for (let i = 0; i < count; i++) {
+            articlesHtml += `<li><a href="/article/${props[i].id}">[${props[i].created_at}] ${props[i].title}</a></li>`;
+        }
+        articlesHtml += '</ul></div>';
     } else {
         for (let i = 0; i < count; i++) {
             articlesHtml += `<div><h6>${props[i].created_at}</h6><h1><a href="/article/${props[i].id}">${props[i].title}</a></h1>${props[i].content_html}</div>`;
@@ -16,7 +22,7 @@ export function PageLayout(props: Article[]) {
     let title = '';
     if (count === 0) {
         title = '[!] 記事がありません。 | k586.jp';
-    } else if (count === 1) {
+    } else if (count === 1 && props[0].content_md) {
         title = props[0].title + ' | k586.jp';
     } else {
         title = 'k586.jp';
