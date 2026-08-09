@@ -9,7 +9,7 @@ export function PageLayout(props: Article[]) {
         articlesHtml = '<div><h3>[!] 記事がありません。</h3></div>';
     } else {
         for (let i = 0; i < count; i++) {
-            articlesHtml += `<div><h6>${raw(props[i].created_at)}</h6><h1><a href="/article/${raw(props[i].id)}">${raw(props[i].title)}</a></h1>${raw(props[i].content_html)}</div>`;
+            articlesHtml += `<div><h6>${props[i].created_at}</h6><h1><a href="/article/${props[i].id}">${props[i].title}</a></h1>${props[i].content_html}</div>`;
         }
     }
 
@@ -51,7 +51,7 @@ export function PageLayout(props: Article[]) {
                 <header>
                     <a href="https://k586.jp">k586.jp</a>
                 </header>
-                <main id="main">` + `${articlesHtml}` + `</main>
+                <main id="main">${raw(articlesHtml)}</main>
                 <footer>
                     <div>
                         <h2>プロフィール</h2>
