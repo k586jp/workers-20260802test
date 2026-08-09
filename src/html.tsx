@@ -1,7 +1,27 @@
 import { html, raw } from 'hono/html';
 import type { Article } from '../../workers-db/src/index';
 
-export function PageLayout(props: Article) {
+export function PageLayout(props: Article[]) {
+    const count = props.length;
+
+    let articlesHtml = '';
+    if (count === 0) {
+        articlesHtml = '<div><h3>[!] 記事がありません。</h3></div>';
+    } else {
+        for (let i = 0; i < count; i++) {
+            articlesHtml += `<div><h6>${raw(props[i].created_at)}</h6><h1><a href="/article/${raw(props[i].id)}">${raw(props[i].title)}</a></h1>${raw(props[i].content_html)}</div>`;
+        }
+    }
+
+    let title = '';
+    if (count === 0) {
+        title = '[!] 記事がありません。 | k586.jp';
+    } else if (count === 1) {
+        title = props[0].title + ' | k586.jp';
+    } else {
+        title = 'k586.jp';
+    }
+
     return html`
 <!DOCTYPE html>
 <html lang="ja">
@@ -16,7 +36,7 @@ export function PageLayout(props: Article) {
     <meta property="og:url" content="https://k586.jp/">
     <meta property="og:locale" content="ja_JP">
     <meta http-equiv="content-security-policy" content="script-src 'self' *.cloudflare.com *.cloudflareinsights.com *.jsdelivr.net">
-    <title>${props.title}</title>
+    <title>${title}</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.9.0/github-markdown.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-okaidia.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.css">
@@ -31,7 +51,7 @@ export function PageLayout(props: Article) {
                 <header>
                     <a href="https://k586.jp">k586.jp</a>
                 </header>
-                <main id="main"><div><h6>${raw(props.created_at)}</h6><h1><a href="/article/${raw(props.id)}">${raw(props.title)}</a></h1>${raw(props.content_html)}</div></main>
+                <main id="main">${articlesHtml}</main>
                 <footer>
                     <div>
                         <h2>プロフィール</h2>
