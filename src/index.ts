@@ -31,7 +31,13 @@ async function indexHtml(context: c) {
 }
 
 async function articleListHtml(context: c) {
-    const json: Article[] = await context.env.K586_ARTICLE_ID.getArticle();
+    let page: number;
+    if (context.req.query('p')) {
+        page = Number(context.req.query('p')) || 0;
+    } else {
+        page = 0;
+    }
+    const json: Article[] = await context.env.K586_ARTICLE_ID.getArticle(page);
     return context.html(PageLayout(json));
 }
 
