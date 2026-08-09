@@ -31,8 +31,8 @@ async function indexHtml(context: c) {
 }
 
 async function articleListHtml(context: c) {
-    const html = htmlText(context, '/article.js');
-    return context.html(html);
+    const json: Article[] = await context.env.K586_ARTICLE_ID.getArticle();
+    return context.html(PageLayout(json));
 }
 
 async function articleHtml(context: c) {;
