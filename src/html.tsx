@@ -51,7 +51,7 @@ export function PageLayout(props: Article[]) {
                 <header>
                     <a href="https://k586.jp">k586.jp</a>
                 </header>
-                <main id="main">${articlesHtml}</main>
+                <main id="main">` + `${articlesHtml}` + `</main>
                 <footer>
                     <div>
                         <h2>プロフィール</h2>
