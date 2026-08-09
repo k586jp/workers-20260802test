@@ -1,6 +1,7 @@
 import { html, raw } from 'hono/html';
+import type { Article } from '../../workers-db/src/index';
 
-export function PageLayout(props: { title: string; bodyHtml: string }) {
+export function PageLayout(props: Article) {
     return html`
 <!DOCTYPE html>
 <html lang="ja">
@@ -30,7 +31,7 @@ export function PageLayout(props: { title: string; bodyHtml: string }) {
                 <header>
                     <a href="https://k586.jp">k586.jp</a>
                 </header>
-                <main id="main">${raw(props.bodyHtml)}</main>
+                <main id="main"><div><h6>${raw(props.created_at)}</h6><h1><a href="/article/${raw(props.id)}">${raw(props.title)}</a></h1>${raw(props.content_html)}</div></main>
                 <footer>
                     <div>
                         <h2>プロフィール</h2>
