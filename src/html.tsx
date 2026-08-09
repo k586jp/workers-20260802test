@@ -28,8 +28,8 @@ export function PageLayout(props: Article[]) {
         title = 'k586.jp';
     }
 
-    return html`
-<!DOCTYPE html>
+    return html
+`<!DOCTYPE html>
 <html lang="ja">
     <head>
     <meta charset="utf-8">
