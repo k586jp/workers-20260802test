@@ -118,14 +118,19 @@ export function EditPageLayout(props: Article) {
             </header>
             <main id="main">
                 <div>
-                    <p>
-                        <label for="id">記事 ID: </label>
-                        <input type="text" name="id" id="id" size="120" value="${props.id}">
-                    </p>
-                    <p>
-                        <label for="content_md">本文: </label><br>
-                        <textarea name="content_md" id="content_md" rows="40" cols="120">${props.content_md}</textarea>
-                    </p>
+                    <form action="/article/${props.id}/edit" method="POST">
+                        <p>
+                            <label for="id">記事 ID: </label>
+                            <input type="text" name="id" id="id" size="100" value="${props.id}">
+                        </p>
+                        <p>
+                            <label for="content_md">本文 (Markdown が使えます) : </label><br>
+                            <textarea name="content_md" id="content_md" rows="40" cols="120">${props.content_md}</textarea>
+                        </p>
+                        <p>
+                            <button type="submit">投稿</button>
+                        </p>
+                    </form>
                 </div>
             </main>
             <footer>
