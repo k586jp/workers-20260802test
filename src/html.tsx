@@ -124,6 +124,10 @@ export function EditPageLayout(props: Article) {
                             <input type="text" name="id" id="id" size="100" value="${props.id}">
                         </p>
                         <p>
+                            <label for="title">記事タイトル: </label>
+                            <input type="text" name="title" id="title" size="100" value="${props.title}">
+                        </p>
+                        <p>
                             <label for="content_md">本文 (Markdown が使えます) : </label><br>
                             <textarea name="content_md" id="content_md" rows="40" cols="120">${props.content_md}</textarea>
                         </p>
