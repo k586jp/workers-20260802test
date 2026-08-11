@@ -15,8 +15,8 @@ function main() {
     page.get('/', indexHtml);
     page.get('/article/', articleListHtml);
     page.get('/article/:id', articleHtml);
-    page.get('/article/:id/edit', articleEditHtml);
-    page.post('/article/:id/edit', articleUpdPost);
+    // page.get('/article/:id/edit', articleEditHtml);
+    // page.post('/article/:id/edit', articleUpdPost);
 
     app.route('/', page);
 
