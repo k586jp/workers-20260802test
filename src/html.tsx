@@ -82,6 +82,7 @@ export function PageLayout(props: Article[]) {
                 <p><a href="https://k586.jp">© 2004-2026 k586.jp</a></p>
             </footer>
         </div>
+        <script src="/common.js"></script>
     </body>
 </html>`;
 }
@@ -142,6 +143,7 @@ export function EditPageLayout(props: Article) {
                 <p><a href="https://k586.jp">© 2004-2026 k586.jp</a></p>
             </footer>
         </div>
+        <script src="/common.js"></script>
     </body>
 </html>`;
 }
