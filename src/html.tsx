@@ -118,10 +118,10 @@ export function EditPageLayout(props: Article) {
             </header>
             <main id="main">
                 <div>
-                    <label for="id">記事 ID</label>
-                    <input type="text" name="id" id="id" value="${props.id}">
-                    <label for="content_md">本文</label>
-                    <textarea name="content_md" id="content_md">${props.content_md}</textarea>
+                    <label for="id">記事 ID: </label>
+                    <input type="text" name="id" id="id" value="${props.id}"><br>
+                    <label for="content_md">本文: </label><br>
+                    <textarea name="content_md" id="content_md" rows="80" cols="160">${props.content_md}</textarea>
                 </div>
             </main>
             <footer>
