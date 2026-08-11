@@ -65,7 +65,7 @@ async function articleUpdPost(context: c) {
         content_md: String(body.content_md || ''),
         user_id: 'k586'
     };
-    await context.env.ARTICLES.updateArticle(article);
+    await context.env.K586_ARTICLES.updateArticle(article);
     return context.redirect('/article/' + id);
 }
 
