@@ -50,7 +50,7 @@ async function articleHtml(context: c) {
 
 async function articleEditHtml(context: c) {
     const id = context.req.param('id');
-    const json: Article = await context.env.K586_ARTICLES.updateArticle(id);
+    const json: Article = await context.env.K586_ARTICLES.getArticleEditMode(id);
     return context.json(json);
 }
 
