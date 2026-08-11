@@ -15,6 +15,7 @@ function main() {
     page.get('/', indexHtml);
     page.get('/article/', articleListHtml);
     page.get('/article/:id', articleHtml);
+    page.get('/article/:id/edit', articleEditHtml);
 
     app.route('/', page);
 
@@ -41,10 +42,16 @@ async function articleListHtml(context: c) {
     return context.html(PageLayout(json));
 }
 
-async function articleHtml(context: c) {;
+async function articleHtml(context: c) {
     const id = context.req.param('id');
     const json: Article[] = await context.env.K586_ARTICLES.getArticles(id);
     return context.html(PageLayout(json));
+}
+
+async function articleEditHtml(context: c) {
+    const id = context.req.param('id');
+    const json = await context.env.K586_ARTICLES.updateArticle(id);
+    return context.json(json);
 }
 
 // ================================================================
