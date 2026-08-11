@@ -1,5 +1,5 @@
 import { Hono, Context as c } from 'hono';
-import { PageLayout } from './html';
+import { PageLayout, EditPageLayout } from './html';
 import type { Service } from '@cloudflare/workers-types'
 import type { K586Articles, Article } from '../../workers-db/src/index';
 
@@ -51,7 +51,7 @@ async function articleHtml(context: c) {
 async function articleEditHtml(context: c) {
     const id = context.req.param('id');
     const json: Article = await context.env.K586_ARTICLES.getArticleEditMode(id);
-    return context.json(json);
+    return context.html(EditPageLayout(json));
 }
 
 // ================================================================
